@@ -32,11 +32,11 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustStrip />
+      <PositioningBand />
       <ProblemSection />
       <ProductGrid />
       <RigidSegment />
       <CapabilitySection />
-      <PositioningBand />
       <ProcessSection />
       <IndustriesSection />
       <ObjectionSection />

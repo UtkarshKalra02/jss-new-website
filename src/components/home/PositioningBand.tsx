@@ -3,10 +3,14 @@ import { CountUp } from "@/components/ui/CountUp";
 import { Container } from "@/components/ui/Container";
 
 /**
- * Positioning numbers, placed in the "results" slot of the strategy document's
- * framework — after the capability claims, before the industry proof, so the
- * figures land as evidence for something the reader has just been told rather
- * than as decoration.
+ * Positioning numbers, placed third — directly under the client logo wall.
+ *
+ * The strategy document puts figures in the "results" slot, after the solution
+ * has been argued. That ordering assumes the page is read linearly, which it is
+ * not: sitting seventh, this block was below the point most visitors ever
+ * reach. Here it forms a credibility escalation with what precedes it — what
+ * JSS does, who it does it for, at what scale — and gives a reader a reason to
+ * keep going before the problem narrative starts.
  *
  * Renders nothing until at least three metrics are confirmed. See
  * src/content/positioning.ts.
