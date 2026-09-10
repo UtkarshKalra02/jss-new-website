@@ -54,7 +54,26 @@ export const company = {
   ],
 } as const;
 
-export const siteUrl = "https://jsstheprintzone.com";
+/**
+ * The canonical origin for this site.
+ *
+ * Canonical URLs, Open Graph URLs, the sitemap and the JSON-LD graph all derive
+ * from this. If it does not match the domain the site is actually served from,
+ * Google sees canonicals pointing at another host and the pages compete with
+ * themselves.
+ *
+ * It reads from NEXT_PUBLIC_SITE_URL so a domain change is a Vercel environment
+ * variable and a redeploy, not a code edit. Set it with the protocol and no
+ * trailing slash, e.g. https://jsstheprintzone.com
+ */
+function resolveSiteUrl() {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return "https://jsstheprintzone.com";
+  const withProtocol = /^https?:\/\//.test(raw) ? raw : `https://${raw}`;
+  return withProtocol.replace(/\/+$/, "");
+}
+
+export const siteUrl = resolveSiteUrl();
 
 /**
  * ── PENDING CONFIRMATION ────────────────────────────────────────────────
