@@ -138,12 +138,12 @@ export default function QualityPage() {
               months later is produced against that record, so the pack that
               arrives matches the one already on shelf.
             </p>
-            {!PENDING.monthlyCapacity.enabled && (
+            {!PENDING.typicalMoq.enabled && (
               <p className="mt-8 border-l-2 border-paper-400 pl-5 text-[15px] leading-relaxed text-ink-500">
-                Capacity figures, lead times and minimum order quantities vary by
-                format and finish. We confirm these against your actual
-                specification rather than publishing a generic number that would
-                not hold for your job.
+                Minimum order quantity is the one figure we do not publish: it
+                moves sharply between a plain monocarton and a foiled rigid box.
+                Share your format and target volume and we will confirm the
+                workable minimum for your specification.
               </p>
             )}
           </div>

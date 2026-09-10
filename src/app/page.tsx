@@ -5,6 +5,7 @@ import { ProblemSection } from "@/components/home/ProblemSection";
 import { ProductGrid } from "@/components/home/ProductGrid";
 import { RigidSegment } from "@/components/home/RigidSegment";
 import { CapabilitySection } from "@/components/home/CapabilitySection";
+import { PositioningBand } from "@/components/home/PositioningBand";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { IndustriesSection } from "@/components/home/IndustriesSection";
 import { ObjectionSection } from "@/components/home/ObjectionSection";
@@ -35,6 +36,7 @@ export default function HomePage() {
       <ProductGrid />
       <RigidSegment />
       <CapabilitySection />
+      <PositioningBand />
       <ProcessSection />
       <IndustriesSection />
       <ObjectionSection />

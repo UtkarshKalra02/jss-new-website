@@ -86,8 +86,6 @@ export const siteUrl = resolveSiteUrl();
 type Pending<T> = { enabled: boolean; value: T };
 
 export const PENDING: {
-  monthlyCapacity: Pending<string>;
-  standardLeadTime: Pending<string>;
   typicalMoq: Pending<string>;
   facilitySize: Pending<string>;
   namedClients: Pending<string[]>;
@@ -96,10 +94,10 @@ export const PENDING: {
   >;
   caseStudies: { enabled: boolean };
 } = {
-  /** e.g. { enabled: true, value: "3.5 lakh cartons / month" } */
-  monthlyCapacity: { enabled: false, value: "" },
-  /** e.g. { enabled: true, value: "12–15 working days from artwork approval" } */
-  standardLeadTime: { enabled: false, value: "" },
+  /* MOVED: monthly capacity and standard lead time are confirmed and now live
+     in src/content/positioning.ts, which feeds both the homepage band and the
+     Manufacturing spec strip. Do not reintroduce them here — one figure, one
+     home, or the two pages drift. */
   /** e.g. { enabled: true, value: "5,000 pcs" } */
   typicalMoq: { enabled: false, value: "" },
   /** e.g. { enabled: true, value: "18,000 sq ft" } */

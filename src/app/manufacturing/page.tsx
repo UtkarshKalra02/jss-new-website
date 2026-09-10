@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { capabilities, processSteps } from "@/content/capabilities";
 import { PENDING, company } from "@/content/company";
+import { manufacturingMetrics } from "@/content/positioning";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section, SectionHead } from "@/components/ui/Section";
@@ -16,14 +17,15 @@ export const metadata: Metadata = pageMeta({
 });
 
 export default function ManufacturingPage() {
-  /* Only renders once the owner confirms a value in src/content/company.ts. */
+  /* Capacity and lead time come from src/content/positioning.ts so the figure
+     shown here cannot drift from the one on the homepage. Facility size is
+     still unconfirmed and lives in company.ts's PENDING block. */
   const facts = [
-    { label: "Facility", field: PENDING.facilitySize },
-    { label: "Monthly capacity", field: PENDING.monthlyCapacity },
-    { label: "Standard lead time", field: PENDING.standardLeadTime },
-  ]
-    .filter((f) => f.field.enabled && f.field.value)
-    .map((f) => ({ label: f.label, value: f.field.value }));
+    ...manufacturingMetrics.map((m) => ({ label: m.label, value: m.value })),
+    ...(PENDING.facilitySize.enabled && PENDING.facilitySize.value
+      ? [{ label: "Facility", value: PENDING.facilitySize.value }]
+      : []),
+  ];
 
   return (
     <>

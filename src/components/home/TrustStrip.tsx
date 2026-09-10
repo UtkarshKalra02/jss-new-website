@@ -1,4 +1,5 @@
 import { namedClients } from "@/content/clients";
+import { metric } from "@/content/positioning";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -47,8 +48,9 @@ export function TrustStrip() {
         </ul>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-[15px] leading-relaxed text-ink-600">
-          Alongside a long list of regional cosmetic, personal care and FMCG
-          brands running recurring monthly volume.
+          Among {metric("brands-served")?.value ?? "a range of"} brands across
+          cosmetics, personal care, pharmaceutical and FMCG — most of them
+          running recurring monthly volume.
         </p>
       </Container>
     </section>
