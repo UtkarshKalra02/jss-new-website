@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand ──────────────────────────────────────────────────────────────
+   * Sampled directly from the logo. The mark is a three-step blue ramp — the
+   * dot and first flame in cyan, the second flame in mid blue, the tallest in
+   * indigo — which reads like a press colour progression. The whole palette is
+   * built from those three values and nothing else.
+   */
+  --color-brand-cyan: #01a0e2;   /* dot, first flame, wordmark bar */
+  --color-brand-blue: #006cb5;   /* second flame */
+  --color-brand-indigo: #393186; /* third flame */
+
+  /* ── Ink ────────────────────────────────────────────────────────────────
+   * Dark surfaces and text. Neutral greys are pulled toward the logo's indigo
+   * hue, so a dark section reads as deep brand blue rather than as generic
+   * graphite. ink-400 is legible on dark surfaces only — on light paper it
+   * falls to 2.9:1, so use ink-500 there.
+   */
+  --color-ink-950: #0a0b12;
+  --color-ink-900: #10121c;
+  --color-ink-800: #1b1e2c;
+  --color-ink-700: #2b2f42;
+  --color-ink-600: #434a62;
+  --color-ink-500: #616879;
+  --color-ink-400: #8b92a4;
+
+  /* ── Paper ──────────────────────────────────────────────────────────────
+   * Light surfaces, cooled very slightly toward the brand hue so they sit
+   * under the blues rather than fighting them.
+   */
+  --color-paper-50: #fcfcfe;
+  --color-paper-100: #f5f7fa;
+  --color-paper-200: #eceff4;
+  --color-paper-300: #dde2ea;
+  --color-paper-400: #c5cbd8;
+
+  /* ── Accent roles ───────────────────────────────────────────────────────
+   * Which brand blue is used where is decided by contrast, not by taste:
+   *   accent-500 (mid blue)  5.5:1 with white  → actions, and accents on light
+   *   accent-400 (cyan)      6.7:1 on ink-950  → accents on dark surfaces
+   * Cyan must never carry white text (2.96:1) or sit as small text on paper
+   * (2.76:1); mid blue must never be small text on a dark surface (3.56:1).
+   */
+  --color-accent-500: #006cb5;
+  --color-accent-600: #005694;
+  --color-accent-400: #01a0e2;
+  --color-accent-050: #e9f4fb;
+
+  /* ── Danger ─────────────────────────────────────────────────────────────
+   * Form validation only. Deliberately outside the brand ramp: a blue "error"
+   * reads as information, not as something the user has to fix.
+   */
+  --color-danger-600: #9e2b23;
+  --color-danger-500: #c0362c;
+  --color-danger-050: #fdf1ef;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-paper-300);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    background-color: var(--color-paper-100);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection {
+    background-color: var(--color-brand-indigo);
+    color: var(--color-paper-50);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-cyan);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  /* Hairline rule used as a structural motif throughout the site. */
+  .rule { border-top: 1px solid var(--color-paper-300); }
+  .rule-dark { border-top: 1px solid var(--color-ink-700); }
+
+  /* Fine grid texture — reads as technical drawing, not decoration. */
+  .grid-field {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-ink-900) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-ink-900) 5%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .grid-field-dark {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* The logo's three blues as a single rule. Used sparingly as a signature. */
+  .brand-rule {
+    height: 3px;
+    background-image: linear-gradient(
+      to right,
+      var(--color-brand-cyan) 0 33.333%,
+      var(--color-brand-blue) 33.333% 66.666%,
+      var(--color-brand-indigo) 66.666% 100%
+    );
+  }
+}
+
+/* Scroll reveal. Progressive enhancement: content is visible without JS
+   because `.reveal` only takes effect once the observer marks the document. */
+[data-reveal-ready] .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal-ready] .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal-ready] .reveal { opacity: 1; transform: none; transition: none; }
+}
