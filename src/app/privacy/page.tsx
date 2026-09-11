@@ -80,7 +80,7 @@ export default function PrivacyPage() {
               it, or ask us to delete it. Write to{" "}
               <a
                 href={mailHref}
-                className="font-mono text-ink-900 underline decoration-paper-400 underline-offset-4 hover:decoration-accent-500"
+                className="break-all font-mono text-ink-900 underline decoration-paper-400 underline-offset-4 hover:decoration-accent-500"
               >
                 {company.email}
               </a>{" "}

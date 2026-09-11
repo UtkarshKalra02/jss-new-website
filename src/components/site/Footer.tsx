@@ -36,16 +36,16 @@ export function Footer() {
                 <br />
                 {company.address.city} {company.address.postalCode}, {company.address.countryName}
               </a>
-              <div className="mt-5 space-y-1.5">
+              <div className="mt-4 space-y-1">
                 <a
                   href={telHref}
-                  className="block text-[15px] text-paper-300 transition-colors hover:text-white"
+                  className="block py-1 text-[15px] text-paper-300 transition-colors hover:text-white"
                 >
                   Call us
                 </a>
                 <a
                   href={mailHref}
-                  className="block font-mono text-[13px] text-paper-300 transition-colors hover:text-white"
+                  className="block break-all py-1 font-mono text-[13px] text-paper-300 transition-colors hover:text-white"
                 >
                   {company.email}
                 </a>
@@ -106,7 +106,7 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
       <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
         {title}
       </h3>
-      <ul className="mt-5 space-y-2.5">{children}</ul>
+      <ul className="mt-4 space-y-1">{children}</ul>
     </div>
   );
 }
@@ -120,7 +120,8 @@ function FooterLink({
   children: React.ReactNode;
   external?: boolean;
 }) {
-  const cls = "text-[15px] text-paper-300 transition-colors hover:text-white";
+  const cls =
+    "block py-1.5 text-[15px] text-paper-300 transition-colors hover:text-white";
   return (
     <li>
       {external ? (

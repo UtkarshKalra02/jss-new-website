@@ -42,7 +42,7 @@ export default function RequestQuotePage() {
 
             <aside className="lg:col-span-5">
               <div className="lg:sticky lg:top-28">
-                <div className="rounded-sm border border-paper-300 bg-paper-50 p-8">
+                <div className="rounded-sm border border-paper-300 bg-paper-50 p-6 sm:p-8">
                   <h2 className="text-[19px] font-semibold">
                     Would rather just talk?
                   </h2>
@@ -75,15 +75,15 @@ export default function RequestQuotePage() {
                       href={mailHref}
                       className="flex items-center justify-between gap-4 rounded-sm border border-paper-300 bg-paper-100 px-5 py-4 transition-colors hover:border-ink-900"
                     >
-                      <span className="text-[14px] text-ink-600">Email</span>
-                      <span className="font-mono text-[13px] text-ink-900">
+                      <span className="shrink-0 text-[14px] text-ink-600">Email</span>
+                      <span className="min-w-0 break-all text-right font-mono text-[13px] text-ink-900">
                         {company.email}
                       </span>
                     </a>
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-sm border border-paper-300 p-8">
+                <div className="mt-6 rounded-sm border border-paper-300 p-6 sm:p-8">
                   <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
                     Visit the facility
                   </h2>

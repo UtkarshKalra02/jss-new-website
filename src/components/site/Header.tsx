@@ -47,7 +47,11 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label={`${company.name} — home`}>
+        <Link
+          href="/"
+          className="-my-2 flex items-center gap-3 py-2"
+          aria-label={`${company.name} — home`}
+        >
           <Image
             src="/images/brand/logo.png"
             alt=""

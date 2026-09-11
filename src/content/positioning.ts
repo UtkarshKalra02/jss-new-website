@@ -40,7 +40,7 @@ export const positioning: Metric[] = [
   },
   {
     key: "monthly-capacity",
-    value: "5 Lakh",
+    value: "5 Lakh+",
     label: "Cartons per month",
     note: "Current production capacity across the Okhla Phase-II floor.",
     enabled: true,
@@ -60,7 +60,7 @@ export const positioning: Metric[] = [
   },
   {
     key: "cartons-produced",
-    value: "2 crore+",
+    value: "2 cr+",
     label: "Cartons produced",
     note: "Cumulative units since the business was established.",
     enabled: true,

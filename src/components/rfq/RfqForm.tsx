@@ -277,7 +277,7 @@ export function RfqForm({ presetProduct }: { presetProduct?: string }) {
               Call us
             </a>{" "}
             or email{" "}
-            <a href={`mailto:${company.email}`} className="font-mono underline">
+            <a href={`mailto:${company.email}`} className="break-all font-mono underline">
               {company.email}
             </a>{" "}
             instead — both reach us directly.
