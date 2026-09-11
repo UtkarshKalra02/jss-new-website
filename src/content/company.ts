@@ -25,6 +25,12 @@ export const company = {
    */
   phone: "+91 98912 58552",
   phoneHref: "+919891258552",
+  /**
+   * INTENTIONALLY a different number from `phone`. This is a separate WhatsApp
+   * Business line, confirmed by the owner. The two differing by a couple of
+   * digits looks like a typo — it is not. Do not "correct" one to match the
+   * other.
+   */
   whatsapp: "919891478552",
   email: "info@jsstheprintzone.com",
 
