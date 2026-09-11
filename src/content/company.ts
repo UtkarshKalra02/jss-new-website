@@ -25,8 +25,8 @@ export const company = {
    */
   phone: "+91 98912 58552",
   phoneHref: "+919891258552",
-  whatsapp: "919891258552",
-  email: "jssgraphics@gmail.com",
+  whatsapp: "919891478552",
+  email: "info@jsstheprintzone.com",
 
   address: {
     street: "39, DSIDC Sheds, Scheme-1",
