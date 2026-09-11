@@ -11,6 +11,7 @@ import {
   mailtoSendUrl,
   type Fields,
 } from "@/lib/rfq";
+import { company } from "@/content/company";
 
 let passed = 0;
 function check(name: string, fn: () => void) {
@@ -109,14 +110,20 @@ console.log("\nHandoff links");
 
 check("the WhatsApp link targets the company number and encodes the body", () => {
   const url = whatsappSendUrl(valid);
-  assert.match(url, /^https:\/\/wa\.me\/919891258552\?text=/);
+  assert.ok(
+    url.startsWith(`https://wa.me/${company.whatsapp}?text=`),
+    `expected wa.me/${company.whatsapp}, got ${url.slice(0, 40)}`
+  );
   assert.ok(decodeURIComponent(url).includes("Acme Personal Care"));
   assert.ok(!url.includes("\n"), "newlines must be percent-encoded");
 });
 
 check("the mailto link carries a useful subject line", () => {
   const url = mailtoSendUrl(valid);
-  assert.match(url, /^mailto:jssgraphics@gmail\.com\?subject=/);
+  assert.ok(
+    url.startsWith(`mailto:${company.email}?subject=`),
+    `expected mailto:${company.email}, got ${url.slice(0, 40)}`
+  );
   const subject = decodeURIComponent(url.split("subject=")[1].split("&body=")[0]);
   assert.equal(subject, "Packaging enquiry — Acme Personal Care Pvt Ltd (Monocartons)");
 });
