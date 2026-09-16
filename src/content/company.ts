@@ -23,15 +23,10 @@ export const company = {
    * "WhatsApp"). Do not print `phone` into JSX, and do not reintroduce it into
    * structured data.
    */
-  phone: "+91 98912 58552",
-  phoneHref: "+919891258552",
-  /**
-   * INTENTIONALLY a different number from `phone`. This is a separate WhatsApp
-   * Business line, confirmed by the owner. The two differing by a couple of
-   * digits looks like a typo — it is not. Do not "correct" one to match the
-   * other.
-   */
-  whatsapp: "919891478552",
+  phone: "+91 98917 58552",
+  phoneHref: "+919891758552",
+  /** WhatsApp runs on the same line as `phone` (country code, no plus). */
+  whatsapp: "919891758552",
   email: "info@jsstheprintzone.com",
 
   address: {
