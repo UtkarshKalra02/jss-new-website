@@ -2,6 +2,7 @@
 
 import { company } from "@/content/company";
 import { telHref, whatsappHref } from "@/lib/contact";
+import { trackClick } from "@/lib/track";
 
 /**
  * Persistent mobile conversion rail. The strategy document's point about
@@ -13,6 +14,7 @@ export function MobileCallBar() {
     <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 border-t border-ink-800 bg-ink-950 lg:hidden">
       <a
         href={telHref}
+        onClick={() => trackClick("call")}
         className="flex items-center justify-center gap-2 py-4 text-[15px] font-medium text-paper-100"
         aria-label={`Call ${company.name}`}
       >
@@ -23,6 +25,7 @@ export function MobileCallBar() {
       </a>
       <a
         href={whatsappHref()}
+        onClick={() => trackClick("whatsapp")}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-center gap-2 border-l border-ink-800 py-4 text-[15px] font-medium text-paper-100"

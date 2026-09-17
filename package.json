@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/rfq.test.ts"
+    "test": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/rfq.test.ts && node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/leads.test.ts"
   },
   "dependencies": {
     "next": "15.5.25",

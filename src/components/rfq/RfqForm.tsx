@@ -13,6 +13,7 @@ import {
   type Fields,
   type Errors,
 } from "@/lib/rfq";
+import { trackLead } from "@/lib/track";
 
 export function RfqForm({ presetProduct }: { presetProduct?: string }) {
   const router = useRouter();
@@ -44,6 +45,9 @@ export function RfqForm({ presetProduct }: { presetProduct?: string }) {
       first?.focus({ preventScroll: true });
       return;
     }
+
+    // Record the enquiry first; the handoff below leaves this page.
+    trackLead(fields, channel);
 
     if (channel === "whatsapp") {
       window.open(whatsappSendUrl(fields), "_blank", "noopener,noreferrer");
