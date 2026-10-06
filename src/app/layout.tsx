@@ -4,7 +4,6 @@ import "./globals.css";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCallBar } from "@/components/site/MobileCallBar";
-import { SiteChrome } from "@/components/site/SiteChrome";
 import { RevealProvider } from "@/components/ui/Reveal";
 import { company, siteUrl } from "@/content/company";
 import { organizationSchema } from "@/lib/seo";
@@ -70,14 +69,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <RevealProvider />
-        <SiteChrome>
-          <Header />
-        </SiteChrome>
+        <Header />
         <main id="main">{children}</main>
-        <SiteChrome>
-          <Footer />
-          <MobileCallBar />
-        </SiteChrome>
+        <Footer />
+        <MobileCallBar />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}

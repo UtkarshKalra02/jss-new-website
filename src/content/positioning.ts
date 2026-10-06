@@ -40,7 +40,7 @@ export const positioning: Metric[] = [
   },
   {
     key: "monthly-capacity",
-    value: "5 Lakh+",
+    value: "10 Lakh+",
     label: "Cartons per month",
     note: "Current production capacity across the Okhla Phase-II floor.",
     enabled: true,
@@ -60,7 +60,7 @@ export const positioning: Metric[] = [
   },
   {
     key: "cartons-produced",
-    value: "2 cr+",
+    value: "100 cr+",
     label: "Cartons produced",
     note: "Cumulative units since the business was established.",
     enabled: true,
@@ -83,7 +83,7 @@ export const positioning: Metric[] = [
     key: "cities",
     value: "10+",
     label: "Cities supplied",
-    note: "Finished packaging delivered across India, not only Delhi NCR.",
+    note: "Finished packaging delivered worldwide.",
     enabled: true,
     home: true,
     worksheetItem: 7,

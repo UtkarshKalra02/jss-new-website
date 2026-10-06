@@ -3,7 +3,7 @@ import "server-only";
 /**
  * Client for the Google Apps Script web app bound to the leads spreadsheet.
  *
- * The script (docs/leads-apps-script.gs) runs as the owner's own Google
+ * The script (docs/apps-script/Code.gs) runs as the owner's own Google
  * account and is the only thing that touches the sheet. Every request is a
  * JSON POST carrying a shared secret; the script ignores anything without it,
  * because a deployed web-app URL is reachable by anyone who knows it.

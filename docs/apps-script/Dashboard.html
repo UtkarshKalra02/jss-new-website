@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<title>Website leads — JSS The Print Zone</title>
+<style>
+  /* Palette mirrors the website: brand blues on cool paper. */
+  :root {
+    --ink-900: #10121c; --ink-800: #1b1e2c; --ink-600: #434a62; --ink-500: #616879;
+    --paper-50: #fcfcfe; --paper-100: #f5f7fa; --paper-300: #dde2ea; --paper-400: #c5cbd8;
+    --accent: #006cb5; --accent-600: #005694; --accent-050: #e9f4fb;
+    --danger: #c0362c; --danger-050: #fdf1ef; --won: #1f7a4d;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper-100); color: var(--ink-900);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  button, select, input, textarea { font: inherit; color: inherit; }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 28px 20px 64px; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-500); margin: 0; }
+  h1 { font-size: 30px; line-height: 1.1; margin: 6px 0 0; letter-spacing: -.01em; }
+  .hidden { display: none !important; }
+
+  /* Login */
+  .login { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+  .login form { width: 100%; max-width: 22rem; }
+  .login h1 { font-size: 26px; }
+  label { display: block; font-size: 14px; font-weight: 500; margin-top: 22px; }
+  .input { width: 100%; margin-top: 6px; padding: 11px 13px; font-size: 16px; border: 1px solid rgba(16,18,28,.25);
+    border-radius: 3px; background: var(--paper-50); outline: none; }
+  .input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,108,181,.2); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px;
+    border-radius: 3px; border: 1px solid transparent; cursor: pointer; font-weight: 500; font-size: 14px; }
+  .btn-primary { background: var(--accent); color: #fff; width: 100%; padding: 14px; margin-top: 20px; font-size: 15px; }
+  .btn-primary:hover { background: var(--accent-600); }
+  .btn-ink { background: var(--ink-900); color: var(--paper-100); }
+  .btn-ghost { background: transparent; border-color: rgba(16,18,28,.25); color: var(--ink-900); }
+  .btn-ghost:hover { border-color: var(--ink-900); }
+  .btn[disabled] { opacity: .45; cursor: default; }
+  .link { background: none; border: 0; padding: 8px; color: var(--ink-600); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+  .error { margin-top: 10px; color: var(--danger); font-size: 14px; }
+  .notice { margin-top: 24px; padding: 14px 18px; border: 1px solid rgba(192,54,44,.4); background: var(--danger-050); border-radius: 3px; font-size: 14px; }
+
+  /* Header */
+  .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .head .actions { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+
+  /* Tiles */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px; }
+  @media (min-width: 640px) { .tiles { grid-template-columns: repeat(5, 1fr); } }
+  .tile { border: 1px solid var(--paper-300); background: var(--paper-50); border-radius: 3px; padding: 16px; }
+  .tile.hot { border-color: rgba(0,108,181,.4); background: var(--accent-050); }
+  .tile .n { font-size: 32px; font-weight: 600; line-height: 1; margin-top: 8px; font-variant-numeric: tabular-nums; }
+  .tile .hint { font-size: 12px; color: var(--ink-500); margin-top: 8px; }
+  .tile.wide { grid-column: span 2; }
+  @media (min-width: 640px) { .tile.wide { grid-column: span 1; } }
+
+  /* Breakdown panels */
+  .panels { display: grid; gap: 20px; margin-top: 20px; }
+  @media (min-width: 900px) { .panels { grid-template-columns: 1fr 1fr; } }
+  .panel { border: 1px solid var(--paper-300); background: var(--paper-50); border-radius: 3px; padding: 20px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; font-size: 13px; font-weight: 500;
+    border: 1px solid rgba(16,18,28,.2); border-radius: 3px; background: transparent; cursor: pointer; }
+  .chip:hover { border-color: var(--ink-900); }
+  .chip.on { background: var(--ink-900); color: var(--paper-100); border-color: var(--ink-900); }
+  .chip .c { font-family: var(--mono); opacity: .7; }
+  .sub { font-size: 12px; color: var(--ink-500); margin-top: 14px; }
+  .bars { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 10px; }
+  .bar { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: 13px; cursor: pointer; }
+  .bar .lbl:hover { text-decoration: underline; }
+  .bar.on .lbl { font-weight: 600; }
+  .bar .c { font-family: var(--mono); color: var(--ink-500); }
+  .bar .track { grid-column: span 2; height: 6px; background: var(--paper-300); border-radius: 99px; overflow: hidden; }
+  .bar .fill { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+
+  /* Filters */
+  .filters { display: grid; gap: 10px; margin-top: 36px; }
+  @media (min-width: 640px) { .filters { grid-template-columns: 1fr auto auto auto; align-items: end; } }
+  .select { padding: 10px 12px; border: 1px solid rgba(16,18,28,.25); border-radius: 3px; background: var(--paper-50); font-size: 14px; }
+  .count { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-500); margin: 22px 0 0; }
+
+  /* Lead cards */
+  .list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 12px; }
+  .card { border: 1px solid var(--paper-300); background: var(--paper-50); border-radius: 3px; }
+  .card .top { display: grid; gap: 14px; padding: 16px; }
+  @media (min-width: 640px) { .card .top { grid-template-columns: 1fr auto; align-items: start; padding: 20px; } }
+  .card .summary { text-align: left; background: none; border: 0; padding: 0; cursor: pointer; min-width: 0; }
+  .meta { font-family: var(--mono); font-size: 11px; color: var(--ink-500); margin: 0; }
+  .meta .dot { color: var(--paper-400); margin: 0 8px; }
+  .co { font-size: 16px; font-weight: 600; margin: 6px 0 0; line-height: 1.3; }
+  .who { font-size: 14px; color: var(--ink-600); margin: 0; }
+  .req { font-size: 14px; color: var(--ink-600); margin: 8px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .side { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  @media (min-width: 640px) { .side { flex-direction: column; align-items: flex-end; } }
+  .status { appearance: none; -webkit-appearance: none; padding: 6px 28px 6px 12px; font-size: 12px; font-weight: 500; border: 1px solid transparent; border-radius: 3px; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='currentColor' stroke-width='1.5'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 8px center; background-size: 12px; }
+  .status.New { background-color: var(--accent); color: #fff; }
+  .status.Contacted { background-color: var(--accent-050); color: var(--accent-600); border-color: rgba(0,108,181,.3); }
+  .status.Quoted { background-color: var(--ink-900); color: var(--paper-100); }
+  .status.Won { background-color: var(--won); color: #fff; }
+  .status.Lost { background-color: var(--paper-300); color: var(--ink-600); }
+  .icons { display: flex; gap: 6px; }
+  .icon { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid rgba(16,18,28,.2); border-radius: 3px; color: var(--ink-800); text-decoration: none; }
+  .icon:hover { background: var(--ink-900); color: var(--paper-100); border-color: var(--ink-900); }
+  .icon svg { width: 16px; height: 16px; }
+  .details { border-top: 1px solid var(--paper-300); padding: 16px 16px 20px; }
+  @media (min-width: 640px) { .details { padding: 16px 20px 20px; } }
+  dl { margin: 0; display: grid; gap: 14px; }
+  @media (min-width: 640px) { dl { grid-template-columns: 1fr 1fr; } }
+  dt { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-500); }
+  dd { margin: 4px 0 0; font-size: 14px; color: var(--ink-800); white-space: pre-wrap; }
+  textarea.input { min-height: 80px; resize: vertical; background: #fff; }
+  .row { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+  .empty { margin-top: 14px; padding: 40px 20px; text-align: center; border: 1px dashed var(--paper-400); border-radius: 3px; color: var(--ink-500); font-size: 14px; }
+  .loading { opacity: .5; pointer-events: none; }
+</style>
+</head>
+<body>
+
+<!-- ── Login ─────────────────────────────────────────────────────────── -->
+<div id="login" class="login">
+  <form id="loginForm">
+    <p class="eyebrow">Owner access</p>
+    <h1>Leads dashboard</h1>
+    <label for="pw">Password</label>
+    <input id="pw" class="input" type="password" autocomplete="current-password" autofocus required>
+    <p id="loginError" class="error hidden">That password is not right.</p>
+    <button class="btn btn-primary" type="submit">Sign in</button>
+  </form>
+</div>
+
+<!-- ── Dashboard ─────────────────────────────────────────────────────── -->
+<div id="app" class="wrap hidden">
+  <header class="head">
+    <div>
+      <p class="eyebrow">JSS The Print Zone · Owner dashboard</p>
+      <h1>Website leads</h1>
+    </div>
+    <div class="actions">
+      <button class="btn btn-ghost" id="refresh" type="button">Refresh</button>
+      <a class="btn btn-ghost" id="sheetLink" href="#" target="_blank" rel="noopener">Open sheet</a>
+      <button class="link" id="logout" type="button">Log out</button>
+    </div>
+  </header>
+
+  <div id="loadError" class="notice hidden"></div>
+
+  <section class="tiles" aria-label="Summary">
+    <div class="tile" id="tileAwaiting"><p class="eyebrow">Awaiting contact</p><div class="n" id="nAwaiting">0</div><div class="hint" id="hAwaiting"></div></div>
+    <div class="tile"><p class="eyebrow">Today</p><div class="n" id="nToday">0</div></div>
+    <div class="tile"><p class="eyebrow">This week</p><div class="n" id="nWeek">0</div><div class="hint">Since Monday</div></div>
+    <div class="tile"><p class="eyebrow">This month</p><div class="n" id="nMonth">0</div></div>
+    <div class="tile wide"><p class="eyebrow">Call / WhatsApp taps</p><div class="n" id="nClicks">0</div><div class="hint">Last 7 days, site-wide</div></div>
+  </section>
+
+  <section class="panels">
+    <div class="panel">
+      <p class="eyebrow" id="pipelineTitle">Pipeline</p>
+      <div class="chips" id="chips"></div>
+      <p class="sub" id="channels"></p>
+    </div>
+    <div class="panel">
+      <p class="eyebrow">By product</p>
+      <ul class="bars" id="bars"></ul>
+    </div>
+  </section>
+
+  <form class="filters" id="filters" onsubmit="return false">
+    <input class="input" id="q" type="search" placeholder="Search name, company, phone, email…" aria-label="Search leads" style="margin:0">
+    <select class="select" id="fProduct" aria-label="Product"><option value="">All products</option></select>
+    <select class="select" id="fStatus" aria-label="Status"><option value="">All statuses</option></select>
+    <button class="btn btn-ghost" id="clear" type="button">Clear</button>
+  </form>
+
+  <p class="count" id="count"></p>
+  <ul class="list" id="list"></ul>
+  <p class="empty hidden" id="empty"></p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var STATUSES = ["New", "Contacted", "Quoted", "Won", "Lost"];
+  var TZ = "Asia/Kolkata";
+
+  /* ── State ────────────────────────────────────────────────────────── */
+  var pw = null;
+  var header = [];      // Leads tab header row, as last loaded
+  var leads = [];       // objects keyed by header name, plus _t (ms)
+  var clicks7d = 0;
+  var filter = { q: "", product: "", status: "" };
+  var open = {};        // id → expanded?
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ── Password memory (per browser, survives reloads) ──────────────── */
+  function remember(p) { try { sessionStorage.setItem("jss_dash_pw", p); } catch (e) {} }
+  function recall() { try { return sessionStorage.getItem("jss_dash_pw"); } catch (e) { return null; } }
+  function forget() { try { sessionStorage.removeItem("jss_dash_pw"); } catch (e) {} }
+
+  /* ── Server calls ─────────────────────────────────────────────────── */
+  function call(fn, args) {
+    return new Promise(function (resolve, reject) {
+      var run = google.script.run.withSuccessHandler(resolve).withFailureHandler(reject);
+      run[fn].apply(run, args);
+    });
+  }
+
+  function isUnauthorized(err) { return /Unauthorized/.test(String(err && err.message || err)); }
+
+  /* ── Rows → objects ───────────────────────────────────────────────── */
+  function objectFromRow(row) {
+    var o = {};
+    for (var c = 0; c < header.length; c++) o[header[c]] = row[c] == null ? "" : String(row[c]);
+    if (STATUSES.indexOf(o["Status"]) < 0) o["Status"] = "New"; // blank or hand-typed
+    o._t = Date.parse(o["Received (UTC)"]);
+    return o;
+  }
+
+  function objects(rows) {
+    if (!rows || rows.length < 1) return [];
+    header = rows[0];
+    var out = [];
+    for (var r = 1; r < rows.length; r++) {
+      var o = objectFromRow(rows[r]);
+      if (o["ID"]) out.push(o); // skip hand-added blank rows
+    }
+    out.sort(function (a, b) { return (b._t || 0) - (a._t || 0); });
+    return out;
+  }
+
+  /* ── IST day / week / month boundaries ────────────────────────────── */
+  function startOf(unit, now) {
+    var parts = new Intl.DateTimeFormat("en-US", { timeZone: TZ, day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", weekday: "short", hour12: false }).formatToParts(now);
+    var get = function (t) { var p = parts.filter(function (x) { return x.type === t; })[0]; return p ? p.value : ""; };
+    var d = Number(get("day")), h = Number(get("hour")) % 24, mi = Number(get("minute")), s = Number(get("second"));
+    var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(get("weekday"));
+    var start = now.getTime() - ((h * 60 + mi) * 60 + s) * 1000;
+    if (unit === "week") start -= ((weekday + 6) % 7) * 86400000;
+    if (unit === "month") start -= (d - 1) * 86400000;
+    return start;
+  }
+
+  var fmt = new Intl.DateTimeFormat("en-IN", { timeZone: TZ, day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+  function when(o) { return isNaN(o._t) ? o["Received (UTC)"] : fmt.format(new Date(o._t)); }
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function waNumber(phone) { var d = phone.replace(/\D/g, ""); return d.length === 10 ? "91" + d : d.replace(/^0+/, ""); }
+
+  /* ── Rendering ────────────────────────────────────────────────────── */
+  function render() {
+    var now = new Date();
+    var day = startOf("day", now), week = startOf("week", now), month = startOf("month", now);
+    var byStatus = {}, byProduct = {}, byChannel = { whatsapp: 0, email: 0 };
+    STATUSES.forEach(function (s) { byStatus[s] = 0; });
+    var today = 0, thisWeek = 0, thisMonth = 0;
+
+    leads.forEach(function (o) {
+      if (!isNaN(o._t)) { if (o._t >= day) today++; if (o._t >= week) thisWeek++; if (o._t >= month) thisMonth++; }
+      byStatus[o["Status"]]++;
+      byChannel[o["Sent via"] === "email" ? "email" : "whatsapp"]++;
+      var p = o["Product"] || "Unspecified";
+      byProduct[p] = (byProduct[p] || 0) + 1;
+    });
+
+    $("nAwaiting").textContent = byStatus.New;
+    $("hAwaiting").textContent = byStatus.New > 0 ? "Marked New — reply within 24h" : "All caught up";
+    $("tileAwaiting").classList.toggle("hot", byStatus.New > 0);
+    $("nToday").textContent = today;
+    $("nWeek").textContent = thisWeek;
+    $("nMonth").textContent = thisMonth;
+    $("nClicks").textContent = clicks7d;
+    $("pipelineTitle").textContent = "Pipeline · " + leads.length + (leads.length === 1 ? " lead" : " leads") + " total";
+    $("channels").textContent = "Sent via WhatsApp " + byChannel.whatsapp + " · via email " + byChannel.email;
+
+    $("chips").innerHTML = STATUSES.map(function (s) {
+      return '<button type="button" class="chip' + (filter.status === s ? " on" : "") + '" data-status="' + s + '">' + s + ' <span class="c">' + byStatus[s] + "</span></button>";
+    }).join("");
+
+    var products = Object.keys(byProduct).sort(function (a, b) { return byProduct[b] - byProduct[a]; });
+    $("bars").innerHTML = products.length === 0
+      ? '<li class="sub" style="margin:0">No leads yet.</li>'
+      : products.slice(0, 6).map(function (p) {
+          var pct = Math.round(byProduct[p] / Math.max(1, leads.length) * 100);
+          return '<li class="bar' + (filter.product === p ? " on" : "") + '" data-product="' + esc(p) + '"><span class="lbl">' + esc(p) + '</span><span class="c">' + byProduct[p] + '</span><span class="track"><span class="fill" style="width:' + pct + '%"></span></span></li>';
+        }).join("");
+
+    // Product options: everything that has appeared, keeping the current choice.
+    var sel = $("fProduct");
+    var keep = sel.value;
+    sel.innerHTML = '<option value="">All products</option>' + products.map(function (p) { return '<option value="' + esc(p) + '">' + esc(p) + "</option>"; }).join("");
+    sel.value = keep;
+    $("fStatus").value = filter.status;
+
+    renderList();
+  }
+
+  function renderList() {
+    var q = filter.q.trim().toLowerCase();
+    var shown = leads.filter(function (o) {
+      if (filter.status && o["Status"] !== filter.status) return false;
+      if (filter.product && (o["Product"] || "Unspecified") !== filter.product) return false;
+      if (q) {
+        var hay = [o["Contact person"], o["Company"], o["Phone"], o["Email"], o["Requirement"]].join(" ").toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+
+    var filtering = !!(filter.status || filter.product || q);
+    $("count").textContent = shown.length + " of " + leads.length + (leads.length === 1 ? " lead" : " leads") + (filtering ? " · filtered" : " · newest first");
+    $("clear").classList.toggle("hidden", !filtering);
+
+    var empty = $("empty");
+    if (shown.length === 0) {
+      empty.textContent = leads.length === 0 ? "No leads recorded yet. Each Request-a-Quote submission will appear here." : "Nothing matches these filters.";
+      empty.classList.remove("hidden");
+    } else empty.classList.add("hidden");
+
+    $("list").innerHTML = shown.map(card).join("");
+  }
+
+  var ICON = {
+    call: '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2.5 4.2c0-.9.7-1.7 1.6-1.7h2c.7 0 1.3.5 1.5 1.2l.6 2.3c.2.6 0 1.3-.5 1.7l-1 .8a11 11 0 0 0 4.8 4.8l.8-1c.4-.5 1.1-.7 1.7-.5l2.3.6c.7.2 1.2.8 1.2 1.5v2c0 .9-.8 1.6-1.7 1.6A14.7 14.7 0 0 1 2.5 4.2Z"/></svg>',
+    wa: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-6.6-5.8c-.5-.9-.5-1.7-.4-2.3.1-.5.6-1.1 1-1.3.2-.1.6-.1.8 0 .2 0 .4 0 .6.5l.7 1.7c.1.2 0 .4-.1.6l-.4.5c-.1.2-.3.3-.1.6a8.8 8.8 0 0 0 3.6 3c.3.1.5.1.7-.1l.7-.8c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.2.5.4 0 .2 0 .8-.2 1.2Z"/></svg>',
+    mail: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1"/><path d="m3 5.5 7 5 7-5"/></svg>'
+  };
+
+  function card(o) {
+    var id = o["ID"], isOpen = !!open[id];
+    var phone = o["Phone"], email = o["Email"], name = o["Contact person"];
+    var meta = esc(when(o)) + '<span class="dot">·</span>' + esc(o["Product"] || "Unspecified") + (o["Quantity"] ? '<span class="dot">·</span>' + esc(o["Quantity"]) : "");
+    var who = esc(name) + (phone ? ' <span style="color:var(--ink-500)">· ' + esc(phone) + "</span>" : email ? ' <span style="color:var(--ink-500)">· ' + esc(email) + "</span>" : "");
+
+    var icons = "";
+    if (phone) icons += '<a class="icon" target="_blank" rel="noopener" title="Call" aria-label="Call ' + esc(name) + '" href="tel:' + esc(phone.replace(/[^\d+]/g, "")) + '">' + ICON.call + "</a>";
+    if (phone) icons += '<a class="icon" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp ' + esc(name) + '" href="https://wa.me/' + esc(waNumber(phone)) + '">' + ICON.wa + "</a>";
+    if (email) icons += '<a class="icon" target="_blank" rel="noopener" title="Email" aria-label="Email ' + esc(name) + '" href="mailto:' + esc(email) + '">' + ICON.mail + "</a>";
+
+    var status = '<select class="status ' + o["Status"] + '" data-id="' + esc(id) + '" aria-label="Status">' +
+      STATUSES.map(function (s) { return '<option' + (s === o["Status"] ? " selected" : "") + ">" + s + "</option>"; }).join("") + "</select>";
+
+    var details = "";
+    if (isOpen) {
+      var dl = [["Requirement", o["Requirement"]], ["Dimensions / specs", o["Dimensions / specs"]], ["Timeline", o["Timeline"]], ["Buyer's notes", o["Buyer's notes"]],
+        ["Email", email], ["Phone", phone], ["Sent via", o["Sent via"] === "email" ? "Email" : "WhatsApp"], ["From page", o["Source page"]], ["Lead ID", id]]
+        .filter(function (p) { return p[1]; })
+        .map(function (p) { return "<div><dt>" + esc(p[0]) + "</dt><dd>" + esc(p[1]) + "</dd></div>"; }).join("");
+      details = '<div class="details"><dl>' + dl + "</dl>" +
+        '<label for="notes-' + esc(id) + '"><span class="eyebrow" style="font-size:10px">Internal notes</span></label>' +
+        '<textarea class="input" id="notes-' + esc(id) + '" data-id="' + esc(id) + '" placeholder="Spoke on the phone, quote sent for 10k pcs…">' + esc(o["Internal notes"]) + "</textarea>" +
+        '<div class="row"><button type="button" class="btn btn-ink save" data-id="' + esc(id) + '" disabled>Save notes</button><span class="error hidden" role="alert" id="err-' + esc(id) + '"></span></div></div>';
+    }
+
+    return '<li class="card" data-id="' + esc(id) + '"><div class="top">' +
+      '<button type="button" class="summary" data-toggle="' + esc(id) + '" aria-expanded="' + isOpen + '">' +
+      '<p class="meta">' + meta + '</p><p class="co">' + esc(o["Company"] || "—") + '</p><p class="who">' + who + "</p>" +
+      (!isOpen && o["Requirement"] ? '<p class="req">' + esc(o["Requirement"]) + "</p>" : "") +
+      "</button><div class=\"side\">" + status + '<div class="icons">' + icons + "</div></div></div>" + details + "</li>";
+  }
+
+  /* ── Data ─────────────────────────────────────────────────────────── */
+  function absorb(res) {
+    leads = objects(res.leads);
+    var weekAgo = Date.now() - 7 * 86400000;
+    clicks7d = (res.clicks || []).slice(1).filter(function (r) { return Date.parse(r[0]) >= weekAgo; }).length;
+    $("sheetLink").href = res.sheetUrl || "#";
+    $("loadError").classList.add("hidden");
+  }
+
+  function load() {
+    $("app").classList.add("loading");
+    return call("dashLoad", [pw]).then(function (res) {
+      absorb(res);
+      render();
+    }).catch(function (err) {
+      if (isUnauthorized(err)) { showLogin(true); return; }
+      var box = $("loadError");
+      box.textContent = "Could not load the sheet: " + (err && err.message || err);
+      box.classList.remove("hidden");
+    }).then(function () { $("app").classList.remove("loading"); });
+  }
+
+  function findLead(id) { for (var i = 0; i < leads.length; i++) if (leads[i]["ID"] === id) return leads[i]; return null; }
+
+  function update(id, patch, onDone) {
+    var o = findLead(id); if (!o) return;
+    var before = {}; Object.keys(patch).forEach(function (k) { before[k] = o[k]; o[k] = patch[k]; });
+    render();
+    call("dashUpdate", [pw, id, patch]).then(function (row) {
+      // The server returns the whole row, so any hand edits made in the sheet
+      // since the last load show up too.
+      if (row) { var fresh = objectFromRow(row); Object.keys(fresh).forEach(function (k) { o[k] = fresh[k]; }); render(); }
+      onDone && onDone(null);
+    }).catch(function (err) {
+      Object.keys(before).forEach(function (k) { o[k] = before[k]; });
+      render();
+      if (isUnauthorized(err)) { showLogin(true); return; }
+      onDone && onDone(err);
+      var box = $("err-" + id);
+      if (box) { box.textContent = "Could not save — " + (err && err.message || err); box.classList.remove("hidden"); }
+    });
+  }
+
+  /* ── Events ───────────────────────────────────────────────────────── */
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-toggle], .chip, .bar, .save, #clear, #refresh, #logout");
+    if (!t) return;
+    if (t.hasAttribute("data-toggle")) { var id = t.getAttribute("data-toggle"); open[id] = !open[id]; renderList(); }
+    else if (t.classList.contains("chip")) { var s = t.getAttribute("data-status"); filter.status = filter.status === s ? "" : s; render(); }
+    else if (t.classList.contains("bar")) { var p = t.getAttribute("data-product"); filter.product = filter.product === p ? "" : p; render(); }
+    else if (t.classList.contains("save")) {
+      var sid = t.getAttribute("data-id"); var ta = $("notes-" + sid);
+      t.disabled = true; t.textContent = "Saving…";
+      update(sid, { "Internal notes": ta.value }, function (err) { var b = document.querySelector('.save[data-id="' + sid + '"]'); if (b) { b.textContent = "Save notes"; b.disabled = !err; } });
+    }
+    else if (t.id === "clear") { filter = { q: "", product: "", status: "" }; $("q").value = ""; render(); }
+    else if (t.id === "refresh") load();
+    else if (t.id === "logout") { forget(); pw = null; showLogin(false); }
+  });
+
+  document.addEventListener("change", function (e) {
+    var t = e.target;
+    if (t.classList.contains("status")) update(t.getAttribute("data-id"), { "Status": t.value });
+    else if (t.id === "fProduct") { filter.product = t.value; render(); }
+    else if (t.id === "fStatus") { filter.status = t.value; render(); }
+  });
+
+  document.addEventListener("input", function (e) {
+    var t = e.target;
+    if (t.id === "q") { filter.q = t.value; renderList(); }
+    else if (t.tagName === "TEXTAREA" && t.dataset.id) {
+      var o = findLead(t.dataset.id); var b = document.querySelector('.save[data-id="' + t.dataset.id + '"]');
+      if (b) b.disabled = !o || t.value === o["Internal notes"];
+    }
+  });
+
+  $("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var candidate = $("pw").value;
+    var btn = e.target.querySelector("button"); btn.disabled = true; btn.textContent = "Signing in…";
+    $("loginError").classList.add("hidden");
+    call("dashLoad", [candidate]).then(function (res) {
+      pw = candidate; remember(pw);
+      absorb(res);
+      showApp();
+    }).catch(function (err) {
+      $("loginError").textContent = isUnauthorized(err) ? "That password is not right." : "Could not reach the sheet: " + (err && err.message || err);
+      $("loginError").classList.remove("hidden");
+    }).then(function () { btn.disabled = false; btn.textContent = "Sign in"; });
+  });
+
+  function showLogin(expired) {
+    $("app").classList.add("hidden"); $("login").classList.remove("hidden");
+    $("pw").value = ""; $("pw").focus();
+    if (expired) { $("loginError").textContent = "Please sign in again."; $("loginError").classList.remove("hidden"); }
+  }
+  function showApp() { $("login").classList.add("hidden"); $("app").classList.remove("hidden"); render(); }
+
+  /* ── Boot ─────────────────────────────────────────────────────────── */
+  $("fStatus").innerHTML = '<option value="">All statuses</option>' + STATUSES.map(function (s) { return "<option>" + s + "</option>"; }).join("");
+  var saved = recall();
+  if (saved) { pw = saved; $("login").classList.add("hidden"); $("app").classList.remove("hidden"); load(); }
+})();
+</script>
+</body>
+</html>
