@@ -41,6 +41,31 @@ export const company = {
 
   instagram: "https://www.instagram.com/jss_the_print_zone/",
 
+  /**
+   * Top management, as confirmed by the owner.
+   *
+   * The `responsibility` lines deliberately describe the business rather than
+   * splitting duties between the two directors, because no one has confirmed
+   * who owns which function. Keep it that way unless the owner says otherwise
+   * — an invented job description is the easiest claim on this site for a
+   * buyer to catch out. The About page renders the line only when it has
+   * content, so a blank one costs nothing.
+   */
+  leadership: [
+    {
+      name: "Amit Kalra",
+      role: "Director",
+      responsibility:
+        "Amit Kalra has led JSS The Print Zone through its growth from commercial offset printing into packaging manufacturing — monocartons, rigid boxes and corrugated packaging produced in-house at the Okhla Phase-II plant in New Delhi.",
+    },
+    {
+      name: "Shikha Oberoi Kalra",
+      role: "Director",
+      responsibility:
+        "Shikha Oberoi Kalra directs the company alongside Amit Kalra, across an operation that keeps structural design, printing, converting and premium finishing under one roof and holds an ISO 9001 certified quality system.",
+    },
+  ],
+
   /** Response commitment shown to buyers. Keep this promise operationally true. */
   responseSla: "within 24 hours",
   responseSlaShort: "24-hour response",

@@ -99,6 +99,29 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      <Section tone="paper">
+        <SectionHead
+          eyebrow="Leadership"
+          title="The owners who run the company"
+          lede="JSS The Print Zone is owner-managed: the two directors below are in the business, not above it. A buyer placing a volume packaging order is entitled to know who stands behind the commitment."
+        />
+        <div className="mt-14 grid gap-px border border-paper-300 bg-paper-300 sm:grid-cols-2">
+          {company.leadership.map((person) => (
+            <div key={person.name} className="reveal bg-paper-100 p-8">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent-500">
+                {person.role}
+              </p>
+              <h3 className="mt-4 text-[21px] font-semibold leading-snug">{person.name}</h3>
+              {person.responsibility && (
+                <p className="mt-3.5 text-[16px] leading-relaxed text-ink-600">
+                  {person.responsibility}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section tone="ink">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">

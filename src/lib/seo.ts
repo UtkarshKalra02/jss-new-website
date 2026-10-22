@@ -56,12 +56,36 @@ export function organizationSchema() {
       postalCode: company.address.postalCode,
       addressCountry: company.address.country,
     },
+    /**
+     * The NCR cities are named individually as well as collectively. Buyers
+     * search "corrugated box supplier Noida", not "supplier Delhi NCR", and a
+     * bare "Delhi NCR" leaves a search engine to infer which towns that covers.
+     * These are the places the Okhla Phase-II plant already delivers to under
+     * the Delhi NCR claim, spelled out — no new territory is implied.
+     */
     areaServed: [
       { "@type": "AdministrativeArea", name: "Delhi NCR" },
+      { "@type": "City", name: "New Delhi" },
+      { "@type": "City", name: "Noida" },
+      { "@type": "City", name: "Greater Noida" },
+      { "@type": "City", name: "Gurugram" },
+      { "@type": "City", name: "Ghaziabad" },
+      { "@type": "City", name: "Faridabad" },
       { "@type": "Country", name: "India" },
     ],
     sameAs: [company.instagram],
     hasCredential: company.certifications.map((c) => c.name),
+    /**
+     * Named directors, tied to this Organization by being nested inside it.
+     * This is what lets Google associate the people with the company rather
+     * than reading two unattached names on a page.
+     */
+    employee: company.leadership.map((person) => ({
+      "@type": "Person",
+      name: person.name,
+      jobTitle: person.role,
+      worksFor: { "@id": `${siteUrl}/#organization` },
+    })),
   };
 }
 

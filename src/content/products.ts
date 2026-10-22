@@ -80,7 +80,7 @@ export const products: Product[] = [
     name: "Corrugated Boxes",
     seoTitle: "Corrugated Box Manufacturer in Delhi NCR | Printed Shipper Cartons",
     metaDescription:
-      "Corrugated box manufacturer in Delhi NCR. Printed shippers, master cartons and e-commerce mailers in 3-ply and 5-ply, engineered for stacking strength and transit protection.",
+      "Corrugated box supplier in Delhi NCR, delivering to Noida, Gurugram and Ghaziabad. Printed shippers, master cartons and e-commerce mailers in 3-ply and 5-ply, engineered for stacking strength and transit protection.",
     summary:
       "Shippers, master cartons and e-commerce mailers. Engineered for stacking strength and transit survival, printed to stay on brand.",
     whatItIs:

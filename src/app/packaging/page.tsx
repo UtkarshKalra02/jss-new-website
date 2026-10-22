@@ -9,9 +9,9 @@ import { ArrowIcon } from "@/components/ui/Button";
 import { pageMeta, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Packaging Solutions | Custom Paper Packaging Manufacturer",
+  title: "Custom Printed Boxes | Packaging Manufacturer in Delhi NCR",
   description:
-    "Custom packaging manufactured in Delhi NCR: monocartons, rigid boxes, corrugated boxes, printed sleeves, window patch boxes, display units and printed labels — printed and finished in-house.",
+    "Custom printed boxes manufactured in Delhi NCR: monocartons, rigid boxes, corrugated boxes, printed sleeves, window patch boxes, display units and printed labels — printed and finished in-house, supplied across Delhi, Noida and Gurugram.",
   path: "/packaging",
 });
 

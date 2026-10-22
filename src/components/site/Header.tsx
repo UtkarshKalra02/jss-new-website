@@ -9,13 +9,20 @@ import { telHref } from "@/lib/contact";
 import { trackClick } from "@/lib/track";
 import { ArrowIcon } from "@/components/ui/Button";
 
+/**
+ * Menu labels are search phrases, not internal vocabulary — the nav is the most
+ * heavily linked text on the site, so what it says is what Google reads as the
+ * subject of each page. "Packaging Boxes" and "Rigid Boxes" are what buyers
+ * actually type; "Company" and "Quality" were words nobody searches for.
+ * The hrefs are unchanged, so no URL moved and no link broke.
+ */
 const nav = [
-  { label: "Packaging", href: "/packaging" },
-  { label: "Rigid & Luxury", href: "/rigid-boxes" },
+  { label: "Packaging Boxes", href: "/packaging" },
+  { label: "Rigid Boxes", href: "/rigid-boxes" },
   { label: "Manufacturing", href: "/manufacturing" },
   { label: "Industries", href: "/industries" },
-  { label: "Quality", href: "/quality" },
-  { label: "Company", href: "/about" },
+  { label: "ISO 9001 Quality", href: "/quality" },
+  { label: "About Us", href: "/about" },
 ];
 
 export function Header() {
@@ -63,14 +70,14 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
+        <nav className="hidden items-center gap-6 xl:flex" aria-label="Main">
           {nav.map((item) => {
             const active = pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-[15px] transition-colors ${
+                className={`whitespace-nowrap text-[15px] transition-colors ${
                   active ? "text-ink-900" : "text-ink-600 hover:text-ink-900"
                 }`}
               >
@@ -80,7 +87,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-6 xl:flex">
           <a
             href={telHref}
             onClick={() => trackClick("call")}
@@ -103,7 +110,7 @@ export function Header() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="-mr-2 flex h-11 w-11 items-center justify-center lg:hidden"
+          className="-mr-2 flex h-11 w-11 items-center justify-center xl:hidden"
         >
           <span className="relative block h-4 w-6">
             <span
@@ -121,7 +128,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div id="mobile-nav" className="border-t border-paper-300 bg-paper-100 lg:hidden">
+        <div id="mobile-nav" className="border-t border-paper-300 bg-paper-100 xl:hidden">
           <nav className="mx-auto max-w-6xl px-5 py-3 sm:px-8" aria-label="Mobile">
             {nav.map((item) => (
               <Link
