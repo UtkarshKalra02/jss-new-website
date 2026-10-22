@@ -108,6 +108,22 @@ function resolveSiteUrl() {
 export const siteUrl = resolveSiteUrl();
 
 /**
+ * Google Search Console ownership token.
+ *
+ * Search Console offers an "HTML tag" verification method, which is a meta tag
+ * carrying a random string. Only the string itself goes here — not the whole
+ * `<meta>` tag — and Next renders the tag from it.
+ *
+ * It reads from the environment so the token can be pasted into Vercel without
+ * a code change or a redeploy of this file. Until it is set, no verification
+ * tag is emitted at all, which is the correct behaviour: an empty or wrong
+ * token is worse than none, because Search Console reports it as a failed
+ * verification rather than an absent one.
+ */
+export const googleSiteVerification =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() || undefined;
+
+/**
  * ── PENDING CONFIRMATION ────────────────────────────────────────────────
  * These are the highest-value trust signals a serious FMCG or D2C buyer
  * looks for, and they are currently absent from the site.

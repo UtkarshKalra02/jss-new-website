@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCallBar } from "@/components/site/MobileCallBar";
 import { RevealProvider } from "@/components/ui/Reveal";
-import { company, siteUrl } from "@/content/company";
+import { company, siteUrl, googleSiteVerification } from "@/content/company";
 import { organizationSchema } from "@/lib/seo";
 
 const archivo = Archivo({
@@ -53,6 +53,10 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   formatDetection: { telephone: true, address: true },
+  // Omitted entirely when the token is unset — see company.ts.
+  verification: googleSiteVerification
+    ? { google: googleSiteVerification }
+    : undefined,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
