@@ -65,11 +65,17 @@ export const company = {
  *
  * It reads from NEXT_PUBLIC_SITE_URL so a domain change is a Vercel environment
  * variable and a redeploy, not a code edit. Set it with the protocol and no
- * trailing slash, e.g. https://jsstheprintzone.com
+ * trailing slash, e.g. https://www.jsstheprintzone.com
+ *
+ * The fallback below is the WWW host on purpose. Production serves on
+ * www.jsstheprintzone.com and 308-redirects the bare domain to it, so a
+ * non-www fallback made every canonical, og:url and sitemap entry point at a
+ * URL that immediately redirects — the exact duplicate-signal problem this
+ * comment warns about. Keep the two in agreement.
  */
 function resolveSiteUrl() {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (!raw) return "https://jsstheprintzone.com";
+  if (!raw) return "https://www.jsstheprintzone.com";
   const withProtocol = /^https?:\/\//.test(raw) ? raw : `https://${raw}`;
   return withProtocol.replace(/\/+$/, "");
 }
