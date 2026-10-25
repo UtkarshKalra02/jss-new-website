@@ -22,11 +22,12 @@ export default function PackagingIndexPage() {
         <Container>
           <Eyebrow tone="dark">Packaging solutions</Eyebrow>
           <h1 className="mt-6 max-w-3xl text-[2.4rem] font-semibold leading-[1.05] sm:text-5xl">
-            Custom paper-based packaging, made in New Delhi.
+            Custom printed boxes, manufactured in New Delhi.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-400">
-            Six core formats, all printed, die-cut, laminated, finished and
-            assembled in the company&rsquo;s own facility. Each page below covers
+            Six core formats of custom printed packaging — all printed, die-cut,
+            laminated, finished and assembled in the company&rsquo;s own Delhi NCR
+            facility. Each page below covers
             what the format is, where it is used, what can be customised and what
             we need in order to quote it. Rigid and luxury boxes are a separate
             segment with{" "}

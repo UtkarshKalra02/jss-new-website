@@ -24,10 +24,11 @@ export default function IndustriesPage() {
         <Container>
           <Eyebrow tone="dark">Industries served</Eyebrow>
           <h1 className="mt-6 max-w-3xl text-[2.4rem] font-semibold leading-[1.05] sm:text-5xl">
-            The same carton is a different problem in every category.
+            Packaging for FMCG, cosmetics, pharma and D2C brands.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-400">
-            A pharmaceutical buyer is protecting a regulatory position. A D2C
+            The same carton is a different problem in every category. A
+            pharmaceutical buyer is protecting a regulatory position. A D2C
             founder is protecting an unboxing moment. An FMCG procurement head is
             protecting a launch date. These are the requirements we work against.
           </p>

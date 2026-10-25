@@ -39,9 +39,9 @@ export function Hero() {
             </p>
 
             <h1 className="mt-7 text-[2.6rem] font-semibold leading-[1.03] tracking-[-0.03em] sm:text-6xl lg:text-[4.4rem]">
-              Packaging that holds
-              <br className="hidden sm:block" /> its standard on the
-              <br className="hidden sm:block" />{" "}
+              Printing and packaging
+              <br className="hidden sm:block" /> that holds its standard
+              <br className="hidden sm:block" /> on the{" "}
               <span className="text-accent-400">fourth reprint.</span>
             </h1>
 

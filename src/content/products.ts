@@ -1,8 +1,15 @@
 export type Product = {
   slug: string;
   name: string;
-  /** Used in <title> and H1 contexts — carries search intent. */
+  /** Used in <title> — carries search intent. */
   seoTitle: string;
+  /**
+   * The page's visible H1. Separate from `name` because `name` is the short
+   * label used in navigation, cards and the quote form, where "Monocarton
+   * Manufacturer in Delhi NCR" would read absurdly. The H1 is the one place a
+   * buyer's search phrase belongs in full.
+   */
+  h1: string;
   metaDescription: string;
   /** One line, buyer-facing. Appears on cards. */
   summary: string;
@@ -28,6 +35,7 @@ export const products: Product[] = [
   {
     slug: "monocartons",
     name: "Monocartons",
+    h1: "Monocarton manufacturer in Delhi NCR",
     seoTitle: "Monocarton Manufacturer in Delhi NCR | Printed Folding Cartons",
     metaDescription:
       "Monocarton manufacturer in Delhi NCR. Offset-printed folding cartons for cosmetics, FMCG, pharma and D2C brands — in-house printing, die-cutting, lamination and finishing.",
@@ -78,6 +86,7 @@ export const products: Product[] = [
   {
     slug: "corrugated-boxes",
     name: "Corrugated Boxes",
+    h1: "Corrugated box supplier in Delhi NCR",
     seoTitle: "Corrugated Box Manufacturer in Delhi NCR | Printed Shipper Cartons",
     metaDescription:
       "Corrugated box supplier in Delhi NCR, delivering to Noida, Gurugram and Ghaziabad. Printed shippers, master cartons and e-commerce mailers in 3-ply and 5-ply, engineered for stacking strength and transit protection.",
@@ -127,6 +136,7 @@ export const products: Product[] = [
   {
     slug: "window-boxes",
     name: "Window Boxes",
+    h1: "Window patch box manufacturer in Delhi NCR",
     seoTitle: "Window Patch Box Manufacturer in Delhi NCR | Cartons with Clear Windows",
     metaDescription:
       "Window patch box manufacturer in Delhi NCR. Cartons with precision die-cut windows and in-house film patching for cosmetics, food, toys, stationery and gift kits.",
@@ -176,6 +186,7 @@ export const products: Product[] = [
   {
     slug: "sleeves",
     name: "Printed Sleeves",
+    h1: "Printed sleeve manufacturer in Delhi NCR",
     seoTitle: "Printed Sleeve Manufacturer in Delhi NCR | Carton & Tray Sleeves",
     metaDescription:
       "Printed packaging sleeve manufacturer in Delhi NCR. Board sleeves for trays, rigid boxes and combo packs — a low-cost way to run variants and seasonal editions.",
@@ -225,6 +236,7 @@ export const products: Product[] = [
   {
     slug: "printed-labels",
     name: "Printed Labels",
+    h1: "Printed label manufacturer in Delhi NCR",
     seoTitle: "Printed Label Manufacturer in Delhi NCR | Product & Bottle Labels",
     metaDescription:
       "Printed label manufacturer in Delhi NCR. Custom product labels in sheet and roll form with foil, matte, gloss and transparent finishes for bottles, jars and cartons.",
@@ -274,6 +286,7 @@ export const products: Product[] = [
   {
     slug: "display-boxes",
     name: "Display & Counter Boxes",
+    h1: "Display box and PDQ manufacturer in Delhi NCR",
     seoTitle: "Display Box & PDQ Manufacturer in Delhi NCR | Counter Display Units",
     metaDescription:
       "Counter display box and PDQ manufacturer in Delhi NCR. Retail-ready display units and shelf-ready packaging that ship flat and open into a merchandising unit.",

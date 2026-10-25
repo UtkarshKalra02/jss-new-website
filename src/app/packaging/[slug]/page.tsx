@@ -61,7 +61,7 @@ export default async function ProductPage({
                 </Link>
               </nav>
               <h1 className="mt-7 text-[2.4rem] font-semibold leading-[1.05] sm:text-5xl">
-                {product.name}
+                {product.h1}
               </h1>
               <p className="mt-6 text-[18px] leading-relaxed text-paper-300">
                 {product.summary}

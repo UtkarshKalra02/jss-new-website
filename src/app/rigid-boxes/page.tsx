@@ -32,7 +32,7 @@ export default function RigidBoxesPage() {
             <div className="max-w-xl">
               <Eyebrow tone="dark">{r.eyebrow}</Eyebrow>
               <h1 className="mt-6 text-[2.4rem] font-semibold leading-[1.05] sm:text-[3.2rem]">
-                {r.name}
+                {r.h1}
               </h1>
               <p className="mt-6 text-[19px] leading-relaxed text-paper-300">
                 {r.headline}

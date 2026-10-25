@@ -46,7 +46,7 @@ export default function ManufacturingPage() {
           <div className="py-20 sm:py-28">
             <Eyebrow tone="dark">Manufacturing &amp; capabilities</Eyebrow>
             <h1 className="mt-6 max-w-3xl text-[2.4rem] font-semibold leading-[1.05] sm:text-5xl">
-              Print, cut, laminate, foil, patch and glue — all in one building.
+              Packaging manufacturing in-house: print, cut, laminate, foil, patch and glue.
             </h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-400">
               The reason packaging schedules slip is almost never the printing. It

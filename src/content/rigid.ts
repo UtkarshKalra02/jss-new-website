@@ -11,6 +11,11 @@
 export const rigidSegment = {
   slug: "rigid-boxes",
   name: "Rigid & Luxury Boxes",
+  /**
+   * Visible H1, kept apart from `name` for the same reason as products.ts:
+   * `name` is the short label used in navigation and the quote form.
+   */
+  h1: "Rigid box manufacturer in Delhi NCR",
   navLabel: "Rigid & Luxury",
   seoTitle: "Rigid Box Manufacturer in Delhi NCR | Luxury Packaging Boxes",
   metaDescription:

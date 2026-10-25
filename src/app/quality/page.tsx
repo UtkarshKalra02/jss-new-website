@@ -54,9 +54,10 @@ export default function QualityPage() {
         <Container>
           <Eyebrow tone="dark">Quality &amp; compliance</Eyebrow>
           <h1 className="mt-6 max-w-3xl text-[2.4rem] font-semibold leading-[1.05] sm:text-5xl">
-            A certification is only worth what the process behind it does.
+            An ISO 9001 certified packaging manufacturer, audited on process.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-400">
+            A certification is only worth what the process behind it does.{" "}
             {company.name} operates an ISO 9001 certified quality management
             system. What that means in practice is set out below — the checks a
             job actually passes through, from incoming board to release.

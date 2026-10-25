@@ -21,11 +21,12 @@ export default function ContactPage() {
         <Container>
           <Eyebrow tone="dark">Contact</Eyebrow>
           <h1 className="mt-6 max-w-2xl text-[2.4rem] font-semibold leading-[1.05] sm:text-5xl">
-            Reach a person, not a queue.
+            Talk to our packaging team in Okhla, New Delhi.
           </h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ink-400">
-            Enquiries are answered {company.responseSla}. If it is urgent, calling
-            will always be faster than a form.
+            Reach a person, not a queue. Enquiries are answered{" "}
+            {company.responseSla}. If it is urgent, calling will always be faster
+            than a form.
           </p>
         </Container>
       </section>
